@@ -30,6 +30,9 @@ def crawling(response, max_length = 20000):
         )
 
     cleaned_texts = []
+
+    # 주헌 : 여기 부분부터 수정..
+
     for doc in docs_transformed:
         text = doc.page_content
         text = re.sub(r'\(https?://[^)]+\)', "", text)
@@ -42,8 +45,8 @@ def crawling(response, max_length = 20000):
         combined_text = ' '.join(cleaned_texts)
 
         if len(combined_text) > max_length:
-        final_text = combined_text[:max_length].rsplit('.', 1)[0] + '.'
+            final_text = combined_text[:max_length].rsplit('.', 1)[0] + '.'
         else:
-        final_text = combined_text
+            final_text = combined_text
 
     return final_text
