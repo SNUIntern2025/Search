@@ -1,6 +1,5 @@
 from tavily_search import tavily_search
 
-searchAPI_result = []
 
 examples = [
     {
@@ -25,6 +24,8 @@ examples = [
     }
 ]
 
+searchAPI_result = []
+
 for query_data in examples:
     if query_data['routing'] == 'web':
         result = tavily_search(query_data['subquery'])
@@ -33,3 +34,5 @@ for query_data in examples:
             'query': query_data['subquery'],
             'result': result
         })
+
+print(searchAPI_result)

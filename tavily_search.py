@@ -1,9 +1,4 @@
-from dotenv import load_dotenv
-import os
 from langchain_community.tools import TavilySearchResults
-
-load_dotenv()
-TAVILY_API_KEY = os.getenv('TAVILY_API_KEY')
 
 def tavily_search(query):
     
