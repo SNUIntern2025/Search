@@ -27,13 +27,14 @@ It will extract content from predefined test URLs(if not, uses a fallback method
 To add a new website, follow these steps:
 
 1. **Define a handler function**: Create a function that takes a URL and returns the extracted content. For example:
+
    ```python
    def handle_example(url):
-       response = requests.get(url)
-       soup = BeautifulSoup(response.text, 'html.parser')
-       content = soup.find('div', class_='main-content')
-       return content.get_text(strip=True) if content else None
+        #handling logic
+
+        return text
    ```
+
 2. **Register the new handler**: Add an entry to the `KNOWN_SITE_HANDLERS` dictionary:
    ```python
    KNOWN_SITE_HANDLERS[r"example\.com"] = handler_example
