@@ -3,25 +3,25 @@ from langchain_community.document_loaders import WebBaseLoader
 import asyncio
 
 async def crawling(response):
-    links = [result['url'] for result in response if 'youtube' not in result['url'].lower()]
+    links = [result["url"] for result in response if "youtube" not in result["url"].lower()]
 
     print(links)
 
     loader = WebBaseLoader(
-    web_path=links,
-    requests_per_second = 1,
-    default_parser='html.parser',
-    bs_kwargs={
-        'from_encoding': 'utf-8',
-        'parse_only': bs4.SoupStrainer(['div', 'main']),
-        },
-    bs_get_text_kwargs={
-        "separator": "",
-        "strip": True
-        }
+        web_path=links,
+        requests_per_second = 1,
+        default_parser='html.parser',
+        bs_kwargs={
+            'from_encoding': 'utf-8',
+            'parse_only': bs4.SoupStrainer(['div', 'main']),
+            },
+        bs_get_text_kwargs={
+            "separator": "",
+            "strip": True
+            }
     )
 
-    docs = await loader.aload()
+    docs =  await loader.aload()
     
     return docs
 
