@@ -110,6 +110,8 @@ def crawl(url):
     # fallback logic (logic2에 해당되는 경우)
     return fallback_extraction(url)
 
+# -------------- 테스트 코드 -------------------
+
 if __name__ == "__main__":
     test_urls = [
         "https://arxiv.org/abs/2401.12345",#arxiv 논문 초록
@@ -118,11 +120,14 @@ if __name__ == "__main__":
     ]
 
     #런타임 시간 측정
-    overall_start = time.time()
+    start_time = time.time()
     for url in test_urls:
         print(f"\nExtracting content from: {url}")
         content = crawl(url)
         print(content)
         print("-" * 80)
-    overall_elapsed = time.time() - overall_start
-    print(f"\nTime taken to crawl {len(test_urls)} websites: {overall_elapsed:.2f} seconds")
+
+    total_elapsed = time.time() - start_time
+    print(f"\nTime taken to crawl {len(test_urls)} websites: {total_elapsed:.2f} seconds")
+
+# --------------------------------------------
