@@ -33,7 +33,7 @@ def get_arxiv_abstract(arxiv_id):
 def handle_arxiv(url):
     """
     arxiv.org 사이트의 URL을 처리하는 함수. 
-    주헌 : 따로 핸들러가 필요한 이유는 arvix_id를 추출해서 export.arxiv.org API를 사용하여 논문의 초록을 가져오도록 하기 위함입니다.
+    주헌 : 별도의 핸들러가 필요한 이유는 arvix_id를 추출해서 export.arxiv.org API를 사용하여 논문의 초록을 가져오도록 하기 위함입니다.
     """
     arxiv_id = url.rstrip('/').split('/')[-1]
     return get_arxiv_abstract(arxiv_id)
@@ -99,7 +99,7 @@ def fallback_extraction(url):
 
 def crawl(url):
     """
-    실제 크롤링 함수 - 여기에 로직을 추가할 수 있음 
+    실제 크롤링 함수 - 여기에 로직을 추가할 수 있음
     주헌 : google search API를 통해 받아온 url을 인자로 사용하면 될 것 같습니다
     """
     # check if the URL matches any known site patterns
