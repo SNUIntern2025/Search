@@ -42,8 +42,8 @@ def crawling(response, max_length = 20000):
         combined_text = ' '.join(cleaned_texts)
 
         if len(combined_text) > max_length:
-        final_text = combined_text[:max_length].rsplit('.', 1)[0] + '.'
+            final_text = combined_text[:max_length].rsplit('.', 1)[0] + '.'
         else:
-        final_text = combined_text
+            final_text = combined_text
 
     return final_text
