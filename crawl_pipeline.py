@@ -28,7 +28,7 @@ def get_arxiv_abstract(arxiv_id):
         abstract = root.find(".//arxiv:summary", ns).text
         return abstract.strip()
     else:
-        return "Error fetching data"
+        return fallback_extraction(url)
 
 def handle_arxiv(url):
     """
@@ -67,6 +67,8 @@ def handle_kor_wikipedia(url):
     return plain_text
 
 # --- 현재까지 main content의 위치가 파악된 사이트 모음 ---
+
+# 주헌 : 확장성을 고려해서 사이트 패턴과 핸들러를 딕셔너리로 관리하도록 만들어봤습니다.
 KNOWN_SITE_HANDLERS = {
     r"arxiv\.org": handle_arxiv,
     r"ko\.wikipedia\.org": handle_kor_wikipedia,
@@ -97,7 +99,7 @@ def fallback_extraction(url):
 def crawl(url):
     """
     실제 크롤링 함수 - 여기에 로직을 추가할 수 있음 
-    (note : google search API를 통해 받아온 url을 인자로 사용하면 될 것 같습니다)
+    주헌 : google search API를 통해 받아온 url을 인자로 사용하면 될 것 같습니다
     """
     # check if the URL matches any known site patterns
     result = dispatch_known_site(url)
@@ -110,13 +112,15 @@ def crawl(url):
 # -------------- 테스트 코드 -------------------
 
 if __name__ == "__main__":
+
+    # 주헌 : 여기에 테스트 URL을 추가하면 됩니다
     test_urls = [
         "https://arxiv.org/abs/2401.12345",#arxiv 논문 초록
         "https://ko.wikipedia.org/wiki/데이터_매트릭스",#한국어 위키백과
         "https://www.yna.co.kr/view/AKR20250204076400009?section=international/all&site=topnews01"#연합뉴스 - readability fallback logic 사용해야함
     ]
 
-    #런타임 시간 측정
+    # 런타임 시간 측정
     start_time = time.time()
     for url in test_urls:
         print(f"\nExtracting content from: {url}")
