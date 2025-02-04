@@ -86,14 +86,11 @@ def fallback_extraction(url):
     readability 라이브러리를 사용하여 main content를 추출하는 함수 (fallback logic)
     """
     response = requests.get(url)
-    start_time = time.time()
     doc = Document(response.text)
     main_content_html = doc.summary()
     soup = BeautifulSoup(main_content_html, 'html.parser')
     filtered_text = soup.get_text(separator='\n', strip=True)
-    elapsed_time = time.time() - start_time
     print(filtered_text)
-    print(f'Elapsed time: {elapsed_time:.2f} sec')
     return filtered_text
 
 
